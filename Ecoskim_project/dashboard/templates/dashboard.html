@@ -1,0 +1,257 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>Welcome 👋</h1>
+        <p>Monitor marine waste detection, collection and segregation in real time.</p>
+    </div>
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+        <div class="stat-icon">🗑️</div>
+        <div>
+            <p>Total Waste Detected</p>
+            <h2>0</h2>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">♻️</div>
+        <div>
+            <p>Biodegradable Waste</p>
+            <h2>0%</h2>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">⚠️</div>
+        <div>
+            <p>Harmful Waste</p>
+            <h2>0%</h2>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">🤖</div>
+        <div>
+            <p>System Status</p>
+            <h2>Active</h2>
+        </div>
+    </div>
+
+</div>
+<div class="monitoring-section">
+
+    <div class="camera-card">
+        <div class="card-header">
+            <div>
+                <h2>Live Monitoring</h2>
+                <p>Real-time camera feed from ECOskim</p>
+            </div>
+
+            <span class="live-badge">● LIVE</span>
+        </div>
+
+        <div class="camera-placeholder">
+            <div class="camera-icon">📹</div>
+            <h3>Camera Feed</h3>
+            <p>Live camera footage will appear here</p>
+        </div>
+    </div>
+
+
+    <div class="system-card">
+        <div class="card-header">
+            <div>
+                <h2>System Status</h2>
+                <p>Current ECOskim status</p>
+            </div>
+        </div>
+
+        <div class="status-item">
+            <span>ESP32 Controller</span>
+
+            {% if esp32_status == "online" %}
+                <strong class="status-online">🟢 Online</strong>
+            {% else %}
+                <strong class="status-offline">🔴 Offline</strong>
+            {% endif %}
+        </div>
+
+        <div class="status-item">
+            <span>Current Movement</span>
+
+            {% if current_command %}
+                <strong class="status-online">{{ current_command }}</strong>
+            {% else %}
+                <strong class="status-online">STOP</strong>
+            {% endif %}
+        </div>
+
+        <div class="movement-controls">
+
+            <h3>Movement Control</h3>
+
+            <div class="control-buttons">
+
+                <a href="{% url 'send_command' %}?move=F" class="control-btn forward">
+                    ⬆️ Forward
+                </a>
+
+                <a href="{% url 'send_command' %}?move=L" class="control-btn left">
+                    ⬅️ Left
+                </a>
+
+                <a href="{% url 'send_command' %}?move=S" class="control-btn stop">
+                    🛑 Stop
+                </a>
+
+                <a href="{% url 'send_command' %}?move=R" class="control-btn right">
+                    ➡️ Right
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="status-item">
+            <span>ESP32-CAM</span>
+            <strong class="status-online">Connected</strong>
+        </div>
+
+        <div class="status-item">
+            <span>YOLO Detection</span>
+            <strong class="status-online">Active</strong>
+        </div>
+
+        <div class="status-item">
+            <span>Collection System</span>
+            <strong class="status-online">Ready</strong>
+        </div>
+    </div>
+
+</div>
+<div class="bottom-dashboard-grid">
+
+    <!-- Waste Detection -->
+
+    <div class="waste-card">
+
+        <div class="card-header">
+            <div>
+                <h2>Waste Detection</h2>
+                <p>Recently detected waste items</p>
+            </div>
+        </div>
+
+        <div class="waste-item">
+
+            <div class="waste-info">
+                <span class="waste-image">🧴</span>
+
+                <div>
+                    <h3>Plastic Bottle</h3>
+                    <p>Detected by YOLO</p>
+                </div>
+            </div>
+
+            <span class="waste-type harmful">Harmful</span>
+
+        </div>
+
+
+        <div class="waste-item">
+
+            <div class="waste-info">
+                <span class="waste-image">📄</span>
+
+                <div>
+                    <h3>Paper</h3>
+                    <p>Detected by YOLO</p>
+                </div>
+            </div>
+
+            <span class="waste-type biodegradable">
+                Biodegradable
+            </span>
+
+        </div>
+
+
+        <div class="waste-item">
+
+            <div class="waste-info">
+                <span class="waste-image">🥫</span>
+
+                <div>
+                    <h3>Metal Can</h3>
+                    <p>Detected by YOLO</p>
+                </div>
+            </div>
+
+            <span class="waste-type harmful">Harmful</span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Waste Composition -->
+
+    <div class="composition-card">
+
+        <div class="card-header">
+
+            <div>
+                <h2>Waste Composition</h2>
+                <p>Detected waste distribution</p>
+            </div>
+
+        </div>
+
+
+        <div class="composition-content">
+
+            <div class="pie-chart"></div>
+
+
+            <div class="composition-legend">
+
+                <div class="legend-item">
+                    <span class="legend-dot plastic"></span>
+                    <span>Plastic</span>
+                    <strong>40%</strong>
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-dot biodegradable"></span>
+                    <span>Biodegradable</span>
+                    <strong>30%</strong>
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-dot metal"></span>
+                    <span>Metal</span>
+                    <strong>20%</strong>
+                </div>
+
+                <div class="legend-item">
+                    <span class="legend-dot other"></span>
+                    <span>Other</span>
+                    <strong>10%</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</div>
+{% endblock %}
