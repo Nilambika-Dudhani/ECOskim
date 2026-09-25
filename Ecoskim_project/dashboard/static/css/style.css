@@ -527,7 +527,6 @@ body {
     }
 }
 
-
 @media (max-width: 650px) {
 
     .navbar {
@@ -556,4 +555,102 @@ body {
     .dashboard-header h1 {
         font-size: 25px;
     }
+}
+/* =========================================
+   LIVE MONITORING PAGE
+   ========================================= */
+/* =========================================
+   LIVE MONITORING PAGE
+   ========================================= */
+
+.live-monitoring-layout {
+    display: block;
+    margin-top: 25px;
+}
+
+.live-monitoring-layout .camera-card {
+    width: 100%;
+}
+
+.live-monitoring-layout .camera-placeholder {
+    height: 550px;
+    min-height: 550px;
+}
+
+/* Detection Card */
+.detection-card {
+    background-color: white;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 4px 15px rgba(11, 45, 77, 0.08);
+    border: 1px solid #DDEFF4;
+}
+
+.detection-image {
+    height: 180px;
+    background-color: #EAF8FC;
+    border: 2px dashed #B7DCE7;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 65px;
+    margin-bottom: 20px;
+}
+
+.detection-details {
+    margin-top: 5px;
+}
+
+.detection-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 0;
+    border-bottom: 1px solid #E1EEF2;
+
+    font-size: 14px;
+}
+
+.detection-item:last-child {
+    border-bottom: none;
+}
+
+.detection-item span {
+    color: #527384;
+}
+
+.detection-item strong {
+    color: #0B2D4D;
+}
+
+.harmful-text {
+    color: #D9534F !important;
+}
+
+.detected-text {
+    color: #20B26B !important;
+}
+
+
+/* Responsive */
+@media (max-width: 900px) {
+
+    .live-monitoring-layout {
+        grid-template-columns: 1fr;
+    }
+
+}
+/* Large Live Camera */
+
+.live-monitoring-layout .camera-card {
+    min-height: 600px;
+}
+
+.live-monitoring-layout .camera-placeholder {
+    height: 500px;
+    min-height: 500px;
 }

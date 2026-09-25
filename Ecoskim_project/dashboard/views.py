@@ -4,7 +4,7 @@ from urllib.error import URLError
 import json
 
 
-ESP32_IP = "192.168.29.65"
+ESP32_IP = "10.129.29.174"
 
 
 def dashboard(request):
@@ -47,3 +47,6 @@ def send_command(request):
         'command_result': result,
         'current_command': result
     })
+
+def live_monitoring(request):
+    return render(request, 'live_monitoring.html')

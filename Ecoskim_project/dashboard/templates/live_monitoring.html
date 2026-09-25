@@ -1,0 +1,85 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>Live Monitoring</h1>
+        <p>Real-time marine waste detection</p>
+    </div>
+
+    <div class="live-monitoring-layout">
+
+        <!-- LIVE CAMERA -->
+        <div class="camera-card">
+
+            <div class="card-header">
+                <div>
+                    <h2>Live Camera Feed</h2>
+                    <p>ESP32-CAM</p>
+                </div>
+
+                <span class="live-badge">● LIVE</span>
+            </div>
+
+            <div class="camera-placeholder">
+
+                <div class="camera-icon">📹</div>
+
+                <h3>Live Camera Footage</h3>
+
+                <p>
+                    ESP32-CAM live video will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- DETECTION INFORMATION -->
+        <div class="detection-card">
+
+            <div class="card-header">
+                <div>
+                    <h2>Detected Waste</h2>
+                    <p>Latest AI detection</p>
+                </div>
+            </div>
+
+            <div class="detection-image">
+                🧴
+            </div>
+
+            <div class="detection-details">
+
+                <div class="detection-item">
+                    <span>Waste Name</span>
+                    <strong>Plastic Bottle</strong>
+                </div>
+
+                <div class="detection-item">
+                    <span>Waste Type</span>
+                    <strong class="harmful-text">Harmful</strong>
+                </div>
+
+                <div class="detection-item">
+                    <span>Confidence</span>
+                    <strong>94%</strong>
+                </div>
+
+                <div class="detection-item">
+                    <span>Status</span>
+                    <strong class="detected-text">Detected</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
