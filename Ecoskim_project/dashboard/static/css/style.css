@@ -1,6 +1,6 @@
-/* =========================================
+/* =========================================================
    ECOskim Dashboard - Main Stylesheet
-   ========================================= */
+   ========================================================= */
 
 * {
     margin: 0;
@@ -14,19 +14,25 @@ body {
     color: #0B2D4D;
 }
 
+a {
+    text-decoration: none;
+}
 
-/* =========================================
+
+/* =========================================================
    NAVBAR
-   ========================================= */
+   ========================================================= */
 
 .navbar {
     width: 100%;
     background-color: #0B2D4D;
     color: white;
     padding: 16px 40px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     box-shadow: 0 3px 12px rgba(11, 45, 77, 0.15);
 }
 
@@ -48,7 +54,6 @@ body {
 
 .nav-links a {
     color: white;
-    text-decoration: none;
     font-size: 14px;
     font-weight: 500;
     transition: 0.2s;
@@ -63,9 +68,9 @@ body {
 }
 
 
-/* =========================================
+/* =========================================================
    DASHBOARD CONTAINER
-   ========================================= */
+   ========================================================= */
 
 .dashboard-container {
     width: 92%;
@@ -89,9 +94,9 @@ body {
 }
 
 
-/* =========================================
-   STAT CARDS
-   ========================================= */
+/* =========================================================
+   SUMMARY STAT CARDS
+   ========================================================= */
 
 .stats-grid {
     display: grid;
@@ -102,67 +107,94 @@ body {
 
 .stat-card {
     background-color: white;
+
     border-radius: 14px;
+
     padding: 22px;
+
     display: flex;
     align-items: center;
     gap: 15px;
+
     box-shadow: 0 4px 15px rgba(11, 45, 77, 0.08);
+
     border: 1px solid #DDEFF4;
 }
 
 .stat-icon {
     width: 52px;
     height: 52px;
+
+    flex-shrink: 0;
+
     border-radius: 12px;
+
     background-color: #E5F7FB;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     font-size: 25px;
 }
 
-.stat-card p {
-    font-size: 13px;
-    color: #527384;
+.stat-card h3 {
+    font-size: 14px;
+    color: #0B2D4D;
     margin-bottom: 5px;
 }
 
-.stat-card h2 {
-    font-size: 24px;
-    color: #0B2D4D;
+.stat-card p {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1FA7D6;
 }
 
 
-/* =========================================
-   MONITORING SECTION
-   ========================================= */
+/* =========================================================
+   DASHBOARD GRID
+   IMPORTANT: dashboard.html uses .dashboard-grid
+   ========================================================= */
 
-.monitoring-section {
+.dashboard-grid {
+    width: 100%;
     display: grid;
-    grid-template-columns: 1.7fr 1fr;
     gap: 25px;
+}
+
+
+/* =========================================================
+   FIRST DASHBOARD GRID
+   CAMERA + SYSTEM STATUS
+   ========================================================= */
+
+.dashboard-grid:has(.camera-card) {
+    grid-template-columns: 1.7fr 1fr;
     margin-bottom: 25px;
 }
 
 
-/* =========================================
-   COMMON CARDS
-   ========================================= */
+/* =========================================================
+   SECOND DASHBOARD GRID
+   WASTE DETECTION + COMPOSITION
+   ========================================================= */
 
-.camera-card,
-.system-card {
-    background-color: white;
-    border-radius: 14px;
-    padding: 22px;
-    box-shadow: 0 4px 15px rgba(11, 45, 77, 0.08);
-    border: 1px solid #DDEFF4;
+.dashboard-grid:has(.detection-card) {
+    grid-template-columns: 1.4fr 1fr;
+    margin-top: 25px;
+    margin-bottom: 30px;
 }
+
+
+/* =========================================================
+   COMMON CARD HEADER
+   ========================================================= */
 
 .card-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     margin-bottom: 20px;
 }
 
@@ -178,34 +210,66 @@ body {
 }
 
 
-/* =========================================
-   LIVE BADGE
-   ========================================= */
+/* =========================================================
+   CAMERA CARD
+   ========================================================= */
 
-.live-badge {
-    background-color: #E7F9EF;
-    color: #20B26B;
-    padding: 7px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
+.camera-card {
+    background-color: white;
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    box-shadow: 0 4px 15px rgba(11, 45, 77, 0.08);
+
+    border: 1px solid #DDEFF4;
+
+    min-width: 0;
 }
 
 
-/* =========================================
+/* =========================================================
    CAMERA
-   ========================================= */
+   ========================================================= */
 
 .camera-placeholder {
-    min-height: 300px;
+    width: 100%;
+    height: 500px;
+    min-height: 500px;
+
     background-color: #EAF8FC;
+
     border: 2px dashed #B7DCE7;
+
     border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+
+    overflow: hidden;
+
+    display: block;
+
+    padding: 0;
+    margin: 0;
+}
+
+.camera-placeholder img {
+    width: 100% !important;
+    height: 100% !important;
+
+    min-width: 100% !important;
+    min-height: 100% !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    display: block !important;
+
+    object-fit: cover !important;
+
+    border: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .camera-icon {
@@ -224,16 +288,58 @@ body {
 }
 
 
-/* =========================================
+/* =========================================================
+   LIVE BADGE
+   ========================================================= */
+
+.live-badge {
+    background-color: #E7F9EF;
+
+    color: #20B26B;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
    SYSTEM STATUS
-   ========================================= */
+   ========================================================= */
+
+.status-card {
+    background-color: white;
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    box-shadow: 0 4px 15px rgba(11, 45, 77, 0.08);
+
+    border: 1px solid #DDEFF4;
+
+    min-width: 0;
+}
+
+.status-list {
+    width: 100%;
+}
 
 .status-item {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
-    padding: 16px 0;
+
+    padding: 13px 0;
+
     border-bottom: 1px solid #E1EEF2;
+
     font-size: 14px;
 }
 
@@ -245,52 +351,85 @@ body {
     color: #385968;
 }
 
+.status-item strong {
+    font-size: 13px;
+}
+
 .status-online {
-    color: #20B26B;
+    color: #20B26B !important;
     font-weight: 700;
 }
 
 .status-offline {
-    color: #D9534F;
+    color: #D9534F !important;
     font-weight: 700;
 }
 
 
-/* =========================================
+/* =========================================================
    MOVEMENT CONTROL
-   ========================================= */
+   ========================================================= */
 
 .movement-controls {
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px solid #DDEFF4;
+    width: 100%;
+
+    background-color: white;
+
+    border-radius: 14px;
+
+    padding: 18px 22px;
+
+    margin-top: 0;
+    margin-bottom: 25px;
+
+    box-shadow: 0 4px 15px rgba(11, 45, 77, 0.08);
+
+    border: 1px solid #DDEFF4;
 }
 
 .movement-controls h3 {
     margin-bottom: 15px;
+
     color: #0B2D4D;
+
     font-size: 17px;
 }
 
 .control-buttons {
     display: flex;
-    gap: 10px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 18px;
+
     flex-wrap: wrap;
 }
 
 .control-btn {
     display: inline-flex;
+
     align-items: center;
+
     justify-content: center;
-    padding: 10px 18px;
+
+    min-width: 120px;
+
+    padding: 11px 20px;
+
     border-radius: 8px;
-    text-decoration: none;
+
     font-weight: 600;
+
     font-size: 14px;
+
     color: white !important;
-    background-color: #1677A8;
+
     border: none;
+
     cursor: pointer;
+
     transition: 0.2s ease;
 }
 
@@ -309,155 +448,216 @@ body {
 
 .control-btn.left,
 .control-btn.right {
-    background-color: #1677A8;
+    background-color: #1FA7D6;
 }
 
 
-/* =========================================
-   BOTTOM DASHBOARD
-   ========================================= */
+/* =========================================================
+   DETECTION CARD
+   ========================================================= */
 
-.bottom-dashboard-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 25px;
-    margin-top: 25px;
-    margin-bottom: 30px;
-}
-
-.waste-card,
-.composition-card {
+.detection-card {
     background-color: white;
+
     border-radius: 14px;
+
     padding: 22px;
+
     box-shadow: 0 4px 15px rgba(11, 45, 77, 0.08);
+
     border: 1px solid #DDEFF4;
+
+    min-width: 0;
 }
 
 
-/* =========================================
-   WASTE DETECTION
-   ========================================= */
+/* =========================================================
+   DETECTION LIST
+   ========================================================= */
 
-.waste-item {
+.detection-list {
+    width: 100%;
+
+    display: block;
+}
+
+.detection-item {
+    width: 100%;
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     padding: 15px 0;
+
     border-bottom: 1px solid #E1EEF2;
+
+    font-size: 14px;
 }
 
-.waste-item:last-child {
+.detection-item:last-child {
     border-bottom: none;
 }
 
-.waste-info {
+.detection-item > div {
     display: flex;
-    align-items: center;
-    gap: 13px;
+
+    flex-direction: column;
+
+    gap: 5px;
 }
 
-.waste-image {
-    width: 45px;
-    height: 45px;
-    border-radius: 10px;
-    background-color: #EAF8FC;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 23px;
+.detection-item > div:last-child {
+    align-items: flex-end;
 }
 
-.waste-info h3 {
-    font-size: 15px;
+.detection-item span {
+    color: #527384;
+    font-size: 13px;
+}
+
+.detection-item strong {
     color: #0B2D4D;
-    margin-bottom: 4px;
 }
 
-.waste-info p {
-    font-size: 12px;
-    color: #6A8795;
+.harmful-text {
+    color: #D9534F !important;
 }
 
-.waste-type {
-    padding: 6px 10px;
-    border-radius: 15px;
-    font-size: 11px;
-    font-weight: 700;
-}
-
-.waste-type.harmful {
-    background-color: #FDECEC;
-    color: #D9534F;
-}
-
-.waste-type.biodegradable {
-    background-color: #E7F9EF;
-    color: #20B26B;
+.detected-text {
+    color: #20B26B !important;
 }
 
 
-/* =========================================
-   WASTE COMPOSITION
-   ========================================= */
+/* =========================================================
+   COMPOSITION CARD
+   ========================================================= */
+
+.composition-card {
+    background-color: white;
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    box-shadow: 0 4px 15px rgba(11, 45, 77, 0.08);
+
+    border: 1px solid #DDEFF4;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   COMPOSITION CONTENT
+   ========================================================= */
 
 .composition-content {
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 35px;
+
     padding: 15px 0;
 }
 
 
-/* =========================================
+/* =========================================================
    DONUT CHART
-   ========================================= */
+   ========================================================= */
 
-.pie-chart {
+.donut-chart {
     width: 190px;
     height: 190px;
+
     border-radius: 50%;
+
     background: conic-gradient(
         #1FA7D6 0% 40%,
-        #20B26B 40% 70%,
-        #1677A8 70% 90%,
-        #F4A340 90% 100%
+        #20B26B 40% 60%,
+        #F4B942 60% 80%,
+        #9BB7C4 80% 100%
     );
+
     position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
     flex-shrink: 0;
 }
 
-.pie-chart::after {
+.donut-chart::before {
     content: "";
+
     position: absolute;
-    width: 90px;
-    height: 90px;
+
+    width: 95px;
+    height: 95px;
+
     background-color: white;
+
     border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+}
+
+.donut-center {
+    position: relative;
+
+    z-index: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.donut-center strong {
+    font-size: 30px;
+    color: #0B2D4D;
+}
+
+.donut-center span {
+    font-size: 13px;
+    color: #527384;
 }
 
 
-/* =========================================
+/* =========================================================
    COMPOSITION LEGEND
-   ========================================= */
+   ========================================================= */
 
 .composition-legend {
     display: flex;
+
     flex-direction: column;
+
     gap: 15px;
 }
 
 .legend-item {
     display: grid;
+
     grid-template-columns: 12px 1fr auto;
+
     align-items: center;
+
     gap: 9px;
-    min-width: 130px;
+
+    min-width: 180px;
+
     font-size: 13px;
+
     color: #385968;
 }
 
@@ -465,32 +665,257 @@ body {
     color: #0B2D4D;
 }
 
-.legend-dot {
+.legend-color {
     width: 10px;
     height: 10px;
+
     border-radius: 50%;
 }
 
-.legend-dot.plastic {
+.legend-color.plastic {
     background-color: #1FA7D6;
 }
 
-.legend-dot.biodegradable {
+.legend-color.biodegradable {
     background-color: #20B26B;
 }
 
-.legend-dot.metal {
-    background-color: #1677A8;
+.legend-color.metal {
+    background-color: #F4B942;
 }
 
-.legend-dot.other {
-    background-color: #F4A340;
+.legend-color.other {
+    background-color: #9BB7C4;
 }
 
 
-/* =========================================
-   RESPONSIVE DESIGN
-   ========================================= */
+/* =========================================================
+   LIVE MONITORING PAGE
+   ========================================================= */
+
+.live-monitoring-layout {
+    display: grid;
+
+    grid-template-columns: 1.7fr 1fr;
+
+    gap: 25px;
+
+    margin-top: 25px;
+}
+
+.live-monitoring-layout .camera-card {
+    width: 100%;
+}
+
+.live-monitoring-layout .camera-placeholder {
+    width: 100%;
+
+    height: 550px;
+
+    min-height: 550px;
+
+    padding: 0;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    display: block;
+}
+
+.live-monitoring-layout .camera-placeholder img {
+    width: 100% !important;
+
+    height: 100% !important;
+
+    min-width: 100% !important;
+
+    min-height: 100% !important;
+
+    max-width: none !important;
+
+    max-height: none !important;
+
+    object-fit: cover !important;
+
+    display: block !important;
+}
+
+.detection-image {
+    height: 180px;
+
+    background-color: #EAF8FC;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 65px;
+
+    margin-bottom: 20px;
+}
+
+.detection-details {
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   DETECTION HISTORY
+   ========================================================= */
+
+.history-card {
+    background-color: white;
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    margin-top: 25px;
+
+    box-shadow: 0 4px 15px rgba(11, 45, 77, 0.08);
+
+    border: 1px solid #DDEFF4;
+}
+
+.history-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    margin-top: 20px;
+}
+
+.history-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 850px;
+}
+
+.history-table thead {
+    background-color: #0B2D4D;
+}
+
+.history-table th {
+    padding: 15px 14px;
+
+    text-align: left;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.history-table td {
+    padding: 15px 14px;
+
+    border-bottom: 1px solid #E1EEF2;
+
+    color: #345568;
+
+    font-size: 14px;
+
+    vertical-align: middle;
+}
+
+.history-table tbody tr:hover {
+    background-color: #F4FBFD;
+}
+
+.history-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.history-waste {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.history-waste strong {
+    color: #0B2D4D;
+}
+
+.history-icon {
+    width: 38px;
+    height: 38px;
+
+    background-color: #EAF8FC;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+.history-badge {
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.history-badge.harmful {
+    background-color: #FDECEC;
+
+    color: #D9534F;
+}
+
+.history-badge.biodegradable {
+    background-color: #E8F8EF;
+
+    color: #20B26B;
+}
+
+
+/* =========================================================
+   ANALYTICS
+   ========================================================= */
+
+.analytics-card {
+    background-color: white;
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    margin-top: 25px;
+
+    box-shadow: 0 4px 15px rgba(11, 45, 77, 0.08);
+
+    border: 1px solid #DDEFF4;
+}
+
+.analytics-card .card-header {
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 
 @media (max-width: 1100px) {
 
@@ -498,11 +923,8 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .monitoring-section {
-        grid-template-columns: 1fr;
-    }
-
-    .bottom-dashboard-grid {
+    .dashboard-grid:has(.camera-card),
+    .dashboard-grid:has(.detection-card) {
         grid-template-columns: 1fr;
     }
 
@@ -527,16 +949,20 @@ body {
     }
 }
 
+
 @media (max-width: 650px) {
 
     .navbar {
         flex-direction: column;
+
         gap: 15px;
+
         text-align: center;
     }
 
     .nav-links {
         flex-wrap: wrap;
+
         justify-content: center;
     }
 
@@ -555,102 +981,14 @@ body {
     .dashboard-header h1 {
         font-size: 25px;
     }
-}
-/* =========================================
-   LIVE MONITORING PAGE
-   ========================================= */
-/* =========================================
-   LIVE MONITORING PAGE
-   ========================================= */
 
-.live-monitoring-layout {
-    display: block;
-    margin-top: 25px;
-}
-
-.live-monitoring-layout .camera-card {
-    width: 100%;
-}
-
-.live-monitoring-layout .camera-placeholder {
-    height: 550px;
-    min-height: 550px;
-}
-
-/* Detection Card */
-.detection-card {
-    background-color: white;
-    border-radius: 14px;
-    padding: 22px;
-    box-shadow: 0 4px 15px rgba(11, 45, 77, 0.08);
-    border: 1px solid #DDEFF4;
-}
-
-.detection-image {
-    height: 180px;
-    background-color: #EAF8FC;
-    border: 2px dashed #B7DCE7;
-    border-radius: 12px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 65px;
-    margin-bottom: 20px;
-}
-
-.detection-details {
-    margin-top: 5px;
-}
-
-.detection-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 15px 0;
-    border-bottom: 1px solid #E1EEF2;
-
-    font-size: 14px;
-}
-
-.detection-item:last-child {
-    border-bottom: none;
-}
-
-.detection-item span {
-    color: #527384;
-}
-
-.detection-item strong {
-    color: #0B2D4D;
-}
-
-.harmful-text {
-    color: #D9534F !important;
-}
-
-.detected-text {
-    color: #20B26B !important;
-}
-
-
-/* Responsive */
-@media (max-width: 900px) {
-
-    .live-monitoring-layout {
-        grid-template-columns: 1fr;
+    .camera-placeholder {
+        height: 350px;
+        min-height: 350px;
     }
 
-}
-/* Large Live Camera */
-
-.live-monitoring-layout .camera-card {
-    min-height: 600px;
-}
-
-.live-monitoring-layout .camera-placeholder {
-    height: 500px;
-    min-height: 500px;
+    .live-monitoring-layout .camera-placeholder {
+        height: 400px;
+        min-height: 400px;
+    }
 }

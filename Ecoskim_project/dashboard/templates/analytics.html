@@ -1,0 +1,167 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>Analytics</h1>
+        <p>Analyze marine waste detection and classification data.</p>
+    </div>
+
+
+    <!-- ANALYTICS SUMMARY -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <div class="stat-icon">♻️</div>
+            <div>
+                <h3>Total Waste</h3>
+                <p>{{ total_waste }}</p>
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-icon">🌱</div>
+            <div>
+                <h3>Biodegradable</h3>
+                <p>{{ biodegradable_waste }}</p>
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-icon">⚠️</div>
+            <div>
+                <h3>Harmful Waste</h3>
+                <p>{{ harmful_waste }}</p>
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-icon">🤖</div>
+            <div>
+                <h3>Detection Accuracy</h3>
+                <p>{{ average_confidence }}%</p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- WASTE COMPOSITION -->
+
+    <div class="analytics-card">
+
+        <div class="card-header">
+            <div>
+                <h2>Waste Composition</h2>
+                <p>Distribution of detected waste categories</p>
+            </div>
+        </div>
+
+
+        <div class="composition-content">
+
+
+            <!-- DONUT CHART -->
+
+            <div class="composition-chart">
+
+                <div
+                    class="donut-chart"
+                    style="
+                        --plastic: {{ plastic_percentage }}%;
+                        --paper-end: {{ paper_end }}%;
+                        --metal-end: {{ metal_end }}%;
+                    "
+                >
+
+                    <div class="donut-center">
+
+                        <strong>{{ total_waste }}</strong>
+
+                        <span>Total</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- LEGEND -->
+
+            <div class="composition-legend">
+
+
+                <!-- PLASTIC -->
+
+                <div class="legend-item">
+
+                    <span class="legend-color plastic"></span>
+
+                    <span>Plastic</span>
+
+                    <strong>{{ plastic_percentage }}%</strong>
+
+                </div>
+
+
+
+                <!-- PAPER -->
+
+                <div class="legend-item">
+
+                    <span class="legend-color biodegradable"></span>
+
+                    <span>Paper</span>
+
+                    <strong>{{ paper_percentage }}%</strong>
+
+                </div>
+
+
+
+                <!-- METAL -->
+
+                <div class="legend-item">
+
+                    <span class="legend-color metal"></span>
+
+                    <span>Metal</span>
+
+                    <strong>{{ metal_percentage }}%</strong>
+
+                </div>
+
+
+
+                <!-- ORGANIC -->
+
+                <div class="legend-item">
+
+                    <span class="legend-color other"></span>
+
+                    <span>Organic</span>
+
+                    <strong>{{ organic_percentage }}%</strong>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock %}

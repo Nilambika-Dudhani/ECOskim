@@ -1,0 +1,89 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>Detection History</h1>
+        <p>View previously detected marine waste and classification results.</p>
+    </div>
+
+    <div class="history-card">
+
+        <div class="card-header">
+            <div>
+                <h2>Waste Detection Records</h2>
+                <p>Recent detections from the marine waste monitoring system</p>
+            </div>
+        </div>
+
+        <div class="history-table-wrapper">
+
+            <table class="history-table">
+
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Waste Detected</th>
+                        <th>Waste Type</th>
+                        <th>Confidence</th>
+                        <th>Classification</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for detection in detections %}
+
+                    <tr>
+                        <td>{{ detection.detected_at|date:"d M Y" }}</td>
+
+                        <td>{{ detection.detected_at|time:"H:i:s" }}</td>
+
+                        <td>
+                            <div class="history-waste">
+                                <span class="history-icon">♻️</span>
+                                <strong>{{ detection.waste_name }}</strong>
+                            </div>
+                        </td>
+
+                        <td>{{ detection.waste_type }}</td>
+
+                        <td>{{ detection.confidence }}%</td>
+
+                        <td>
+                            {% if detection.classification == "Harmful" %}
+                                <span class="history-badge harmful">
+                                    Harmful
+                                </span>
+                            {% else %}
+                                <span class="history-badge biodegradable">
+                                    Biodegradable
+                                </span>
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+                        <td colspan="6" style="text-align: center;">
+                            No waste detection records found.
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

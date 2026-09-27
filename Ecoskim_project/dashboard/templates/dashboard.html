@@ -4,246 +4,568 @@
 
 <div class="dashboard-container">
 
+    <!-- =========================================
+         DASHBOARD HEADER
+         ========================================= -->
+
     <div class="dashboard-header">
-        <h1>Welcome 👋</h1>
-        <p>Monitor marine waste detection, collection and segregation in real time.</p>
+
+        <h1>Welcome</h1>
+
+        <p>
+            Autonomous marine waste monitoring and management system.
+        </p>
+
     </div>
 
-<div class="stats-grid">
 
-    <div class="stat-card">
-        <div class="stat-icon">🗑️</div>
-        <div>
-            <p>Total Waste Detected</p>
-            <h2>0</h2>
-        </div>
-    </div>
+    <!-- =========================================
+         SUMMARY CARDS
+         ========================================= -->
 
-    <div class="stat-card">
-        <div class="stat-icon">♻️</div>
-        <div>
-            <p>Biodegradable Waste</p>
-            <h2>0%</h2>
-        </div>
-    </div>
+    <div class="stats-grid">
 
-    <div class="stat-card">
-        <div class="stat-icon">⚠️</div>
-        <div>
-            <p>Harmful Waste</p>
-            <h2>0%</h2>
-        </div>
-    </div>
+        <div class="stat-card">
 
-    <div class="stat-card">
-        <div class="stat-icon">🤖</div>
-        <div>
-            <p>System Status</p>
-            <h2>Active</h2>
-        </div>
-    </div>
+            <div class="stat-icon">
+                ♻️
+            </div>
 
-</div>
-<div class="monitoring-section">
-
-    <div class="camera-card">
-        <div class="card-header">
             <div>
-                <h2>Live Monitoring</h2>
-                <p>Real-time camera feed from ECOskim</p>
+                <h3>Total Waste Detected</h3>
+                <p>5</p>
             </div>
 
-            <span class="live-badge">● LIVE</span>
         </div>
 
-        <div class="camera-placeholder">
-            <div class="camera-icon">📹</div>
-            <h3>Camera Feed</h3>
-            <p>Live camera footage will appear here</p>
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🌱
+            </div>
+
+            <div>
+                <h3>Biodegradable Waste</h3>
+                <p>2</p>
+            </div>
+
         </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⚠️
+            </div>
+
+            <div>
+                <h3>Harmful Waste</h3>
+                <p>3</p>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🤖
+            </div>
+
+            <div>
+                <h3>Detection Status</h3>
+                <p>Active</p>
+            </div>
+
+        </div>
+
     </div>
 
 
-    <div class="system-card">
-        <div class="card-header">
-            <div>
-                <h2>System Status</h2>
-                <p>Current ECOskim status</p>
-            </div>
-        </div>
 
-        <div class="status-item">
-            <span>ESP32 Controller</span>
+    <!-- =========================================
+         LIVE CAMERA + SYSTEM STATUS
+         ========================================= -->
 
-            {% if esp32_status == "online" %}
-                <strong class="status-online">🟢 Online</strong>
-            {% else %}
-                <strong class="status-offline">🔴 Offline</strong>
-            {% endif %}
-        </div>
-
-        <div class="status-item">
-            <span>Current Movement</span>
-
-            {% if current_command %}
-                <strong class="status-online">{{ current_command }}</strong>
-            {% else %}
-                <strong class="status-online">STOP</strong>
-            {% endif %}
-        </div>
-
-        <div class="movement-controls">
-
-            <h3>Movement Control</h3>
-
-            <div class="control-buttons">
-
-                <a href="{% url 'send_command' %}?move=F" class="control-btn forward">
-                    ⬆️ Forward
-                </a>
-
-                <a href="{% url 'send_command' %}?move=L" class="control-btn left">
-                    ⬅️ Left
-                </a>
-
-                <a href="{% url 'send_command' %}?move=S" class="control-btn stop">
-                    🛑 Stop
-                </a>
-
-                <a href="{% url 'send_command' %}?move=R" class="control-btn right">
-                    ➡️ Right
-                </a>
-
-            </div>
-
-        </div>
+    <div class="dashboard-grid">
 
 
-        <div class="status-item">
-            <span>ESP32-CAM</span>
-            <strong class="status-online">Connected</strong>
-        </div>
+        <!-- LIVE CAMERA -->
 
-        <div class="status-item">
-            <span>YOLO Detection</span>
-            <strong class="status-online">Active</strong>
-        </div>
+        <div class="camera-card">
 
-        <div class="status-item">
-            <span>Collection System</span>
-            <strong class="status-online">Ready</strong>
-        </div>
-    </div>
-
-</div>
-<div class="bottom-dashboard-grid">
-
-    <!-- Waste Detection -->
-
-    <div class="waste-card">
-
-        <div class="card-header">
-            <div>
-                <h2>Waste Detection</h2>
-                <p>Recently detected waste items</p>
-            </div>
-        </div>
-
-        <div class="waste-item">
-
-            <div class="waste-info">
-                <span class="waste-image">🧴</span>
+            <div class="card-header">
 
                 <div>
-                    <h3>Plastic Bottle</h3>
-                    <p>Detected by YOLO</p>
+
+                    <h2>Live Camera Feed</h2>
+
+                    <p>
+                        ESP32-CAM real-time monitoring
+                    </p>
+
                 </div>
+
+                <span class="live-badge">
+                    ● LIVE
+                </span>
+
             </div>
 
-            <span class="waste-type harmful">Harmful</span>
+
+            <div
+                class="camera-placeholder"
+                style="
+                    padding: 0;
+                    margin: 0;
+                    width: 100%;
+                    height: 500px;
+                    min-height: 500px;
+                    overflow: hidden;
+                    display: block;
+                    border-radius: 12px;
+                "
+            >
+
+                <img
+                    src="http://192.168.29.43:81/stream"
+                    alt="ESP32-CAM Live Stream"
+                    style="
+                        width: 100%;
+                        height: 100%;
+                        min-width: 100%;
+                        min-height: 100%;
+                        max-width: none;
+                        max-height: none;
+                        display: block;
+                        object-fit: cover;
+                        border: none;
+                        margin: 0;
+                        padding: 0;
+                    "
+                >
+
+            </div>
 
         </div>
 
 
-        <div class="waste-item">
 
-            <div class="waste-info">
-                <span class="waste-image">📄</span>
+        <!-- =========================================
+             SYSTEM STATUS
+             ========================================= -->
 
-                <div>
-                    <h3>Paper</h3>
-                    <p>Detected by YOLO</p>
-                </div>
-            </div>
+        <div class="status-card">
 
-            <span class="waste-type biodegradable">
-                Biodegradable
-            </span>
-
-        </div>
-
-
-        <div class="waste-item">
-
-            <div class="waste-info">
-                <span class="waste-image">🥫</span>
+            <div class="card-header">
 
                 <div>
-                    <h3>Metal Can</h3>
-                    <p>Detected by YOLO</p>
+
+                    <h2>System Status</h2>
+
+                    <p>
+                        Current system connection status
+                    </p>
+
                 </div>
+
             </div>
 
-            <span class="waste-type harmful">Harmful</span>
+
+            <div class="status-list">
+
+
+                <!-- ESP32 CONTROLLER -->
+
+                <div class="status-item">
+
+                    <span>
+                        ESP32 Controller
+                    </span>
+
+                    {% if esp32_status == "online" %}
+
+                        <strong class="status-online">
+                            🟢 Online
+                        </strong>
+
+                    {% else %}
+
+                        <strong class="status-offline">
+                            🔴 Offline
+                        </strong>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <!-- ESP32 CAM -->
+
+                <div class="status-item">
+
+                    <span>
+                        ESP32-CAM
+                    </span>
+
+                    <strong class="status-online">
+                        🟢 Connected
+                    </strong>
+
+                </div>
+
+
+
+                <!-- YOLO -->
+
+                <div class="status-item">
+
+                    <span>
+                        YOLO Detection
+                    </span>
+
+                    <strong class="status-online">
+                        🟢 Ready
+                    </strong>
+
+                </div>
+
+
+
+                <!-- COLLECTION SYSTEM -->
+
+                <div class="status-item">
+
+                    <span>
+                        Collection System
+                    </span>
+
+                    <strong class="status-online">
+                        🟢 Ready
+                    </strong>
+
+                </div>
+
+
+
+                <!-- CURRENT MOVEMENT -->
+
+                <div class="status-item">
+
+                    <span>
+                        Current Movement
+                    </span>
+
+                    {% if current_command %}
+
+                        <strong class="status-online">
+                            {{ current_command }}
+                        </strong>
+
+                    {% else %}
+
+                        <strong class="status-online">
+                            STOP
+                        </strong>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
 
 
-    <!-- Waste Composition -->
 
-    <div class="composition-card">
+    <!-- =========================================
+         MOVEMENT CONTROL
+         ========================================= -->
 
-        <div class="card-header">
+    <div class="movement-controls">
 
-            <div>
-                <h2>Waste Composition</h2>
-                <p>Detected waste distribution</p>
+        <h3>Movement Control</h3>
+
+
+        <div class="control-buttons">
+
+            <a
+                href="{% url 'send_command' %}?move=F"
+                class="control-btn forward"
+            >
+                ⬆️ Forward
+            </a>
+
+
+            <a
+                href="{% url 'send_command' %}?move=L"
+                class="control-btn left"
+            >
+                ⬅️ Left
+            </a>
+
+
+            <a
+                href="{% url 'send_command' %}?move=S"
+                class="control-btn stop"
+            >
+                🛑 Stop
+            </a>
+
+
+            <a
+                href="{% url 'send_command' %}?move=R"
+                class="control-btn right"
+            >
+                ➡️ Right
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         WASTE DETECTION
+         ========================================= -->
+
+    <div class="dashboard-grid">
+
+
+        <!-- DETECTED WASTE -->
+        <div class="detection-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>Waste Detection</h2>
+
+                    <p>
+                        Latest detected marine waste
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="detection-list">
+
+
+                <!-- PLASTIC BOTTLE -->
+
+                <div class="detection-item">
+
+                    <div>
+
+                        <strong>
+                            🧴 Plastic Bottle
+                        </strong>
+
+                        <span>
+                            Plastic
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong class="harmful-text">
+                            Harmful
+                        </strong>
+
+                        <span>
+                            94%
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PAPER -->
+
+                <div class="detection-item">
+
+                    <div>
+
+                        <strong>
+                            📄 Paper
+                        </strong>
+
+                        <span>
+                            Paper
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong class="detected-text">
+                            Biodegradable
+                        </strong>
+
+                        <span>
+                            91%
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- METAL -->
+
+                <div class="detection-item">
+
+                    <div>
+
+                        <strong>
+                            🥫 Metal Can
+                        </strong>
+
+                        <span>
+                            Metal
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong class="harmful-text">
+                            Harmful
+                        </strong>
+
+                        <span>
+                            88%
+                        </span>
+
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
 
 
-        <div class="composition-content">
 
-            <div class="pie-chart"></div>
+        <!-- =========================================
+             WASTE COMPOSITION
+             ========================================= -->
 
+        <div class="composition-card">
 
-            <div class="composition-legend">
+            <div class="card-header">
 
-                <div class="legend-item">
-                    <span class="legend-dot plastic"></span>
-                    <span>Plastic</span>
-                    <strong>40%</strong>
+                <div>
+
+                    <h2>Waste Composition</h2>
+
+                    <p>
+                        Distribution of detected waste
+                    </p>
+
                 </div>
 
-                <div class="legend-item">
-                    <span class="legend-dot biodegradable"></span>
-                    <span>Biodegradable</span>
-                    <strong>30%</strong>
+            </div>
+
+
+            <div class="composition-content">
+
+
+                <div class="composition-chart">
+
+                    <div class="donut-chart">
+
+                        <div class="donut-center">
+
+                            <strong>
+                                5
+                            </strong>
+
+                            <span>
+                                Total
+                            </span>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="legend-item">
-                    <span class="legend-dot metal"></span>
-                    <span>Metal</span>
-                    <strong>20%</strong>
-                </div>
 
-                <div class="legend-item">
-                    <span class="legend-dot other"></span>
-                    <span>Other</span>
-                    <strong>10%</strong>
+
+                <div class="composition-legend">
+
+
+                    <div class="legend-item">
+
+                        <span class="legend-color plastic"></span>
+
+                        <span>
+                            Plastic
+                        </span>
+
+                        <strong>
+                            40%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <span class="legend-color biodegradable"></span>
+
+                        <span>
+                            Paper
+                        </span>
+
+                        <strong>
+                            20%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <span class="legend-color metal"></span>
+
+                        <span>
+                            Metal
+                        </span>
+
+                        <strong>
+                            20%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <span class="legend-color other"></span>
+
+                        <span>
+                            Organic
+                        </span>
+
+                        <strong>
+                            20%
+                        </strong>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -253,5 +575,5 @@
     </div>
 
 </div>
-</div>
+
 {% endblock %}
